@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  SGName:
+    Type: String
+    Description: Security Group Name
+    Default: SAMPLE
+  AllowPorts:
+    Type: CommaDelimitedList
+    Description: Allow inbound ports
+    Default: "80,443"
+
+Resources:
+  ServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: !Ref SGName
+      GroupDescription: allow connections from any
+      SecurityGroupIngress:
+        Fn::Transform:
+          Name: SGIngressPorts
+          Parameters:
+            AllowPorts: !Ref AllowPorts
