@@ -8,6 +8,10 @@ Parameters:
     Type: CommaDelimitedList
     Description: Allow inbound ports
     Default: "80,443"
+  AllowCidr:
+    Type: String
+    Description: Allow CIDR
+    Default: "0.0.0.0/0"
 
 Resources:
   ServerSecurityGroup:
@@ -20,3 +24,4 @@ Resources:
           Name: SGIngressPorts
           Parameters:
             AllowPorts: !Ref AllowPorts
+            AllowCidr: !Ref AllowCidr
