@@ -11,7 +11,7 @@ aws cloudformation deploy --template-file macro-output.yml --stack-name ${STACK_
 
 ## Usage in cloudformation template
 
-```cf-test.yml
+```cf-macro-example.yml
 AWSTemplateFormatVersion: 2010-09-09
 Parameters:
   SGName:
@@ -21,7 +21,11 @@ Parameters:
   AllowPorts:
     Type: CommaDelimitedList
     Description: Allow inbound ports
-    Default: "80,443"
+    Default: "80,443,8000-8003"
+  AllowCidr:
+    Type: String
+    Description: Allow CIDR
+    Default: "0.0.0.0/0"
 
 Resources:
   ServerSecurityGroup:
@@ -34,6 +38,7 @@ Resources:
           Name: SGIngressPorts
           Parameters:
             AllowPorts: !Ref AllowPorts
+            AllowCidr: !Ref AllowCidr
 ```
 
 ## Refs

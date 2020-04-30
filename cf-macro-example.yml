@@ -7,7 +7,7 @@ Parameters:
   AllowPorts:
     Type: CommaDelimitedList
     Description: Allow inbound ports
-    Default: "80,443"
+    Default: "80,443,8000-8003"
   AllowCidr:
     Type: String
     Description: Allow CIDR
